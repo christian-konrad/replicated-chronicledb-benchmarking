@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script>
+			class MeasurePerformanceSuite {
+				constructor() {
+					this.running = false;
+					this._runInterval = null;
+				}
+
+				async runCounterTests(items) {
+					const ITEMS = 100000;
+					const batchTrials = [100, 1000, 10000];
+					for (let i = 0; i < batchTrials.length; i++) {
+						const batchSize = batchTrials[i];
+						console.log(`Current batch size: ${batchSize} items`);
+						const response = await fetch(`http://localhost:8080/api/sys-info/performance/measure/counter/replicated/increment/${ITEMS}?batchSize=${batchSize}`);
+						const responseText = await response.text();
+						console.log(responseText);
+					};
+				}
+
+				// TODO better in python
+				async runTest(items) {
+					const response = await fetch(`http://localhost:8080/api/sys-info/performance/measure/event-store/insert-events/${items}?batchSize=${items}`);
+					const result = await response.json();
+					console.log(result.message);
+					return result;
+				}
+
+				async runTests() {
+					// await 
+				}
+
+				async startRealtimeTest({ itemsPerRun = 100, interval = 100 } = {}) {
+					if (this._runInterval) clearInterval(this._runInterval);
+					this._runInterval = setInterval(async () => {
+						// const response = await fetch(`http://localhost:8080/api/sys-info/performance/measure/event-store/insert-events/${itemsPerRun}?batchSize=${itemsPerRun}`);
+						// const responseText = await response.text();
+						// console.log(responseText);
+						fetch(`http://localhost:8080/api/sys-info/performance/measure/event-store/insert-events/${itemsPerRun}?batchSize=${itemsPerRun}`);
+					}, interval);
+				}
+
+				startRealtimeTest2({ itemsPerRun = 100, interval = 100 } = {}) {
+					if (this._runInterval) clearInterval(this._runInterval);
+					this._runInterval = setInterval(() => {					
+						console.log(interval);
+					}, interval);
+				}
+
+				stopRealtimeTest() {
+					if (this._runInterval) clearInterval(this._runInterval);
+				}
+			}
+
+			measurePerformanceSuite = new MeasurePerformanceSuite();
+		</script>
+	</head>
+	<body>
+		Open the Developer tools and run tests via the "measurePerformanceSuite" on the console, for example "measurePerformanceSuite.startRealtimeTest({ itemsPerRun: 1, interval: 1000 })".
+	</body>
+</html>

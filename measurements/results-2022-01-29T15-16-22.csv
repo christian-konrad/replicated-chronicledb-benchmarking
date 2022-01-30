@@ -1,0 +1,11 @@
+cluster_type,node_count,event_type,buffer_type,buffer_size_in_bytes,event_count,trial,duration_in_ms,measured_on
+localI7,3,randomized,blocking,1048576,10000000,1,124276,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,2,122494,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,3,117724,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,4,119596,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,5,114629,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,6,116312,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,7,117374,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,8,116087,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,9,112328,2022-01-29T15-16-22
+localI7,3,randomized,blocking,1048576,10000000,10,116259,2022-01-29T15-16-22
